@@ -1,0 +1,5 @@
+nre:
+  wsdl: "http://schemas.xmlsoap.org/wsdl/soap12/"
+  service: "ldb"
+  port: "LDBServiceSoap12"
+  address: "https://lite.realtime.nationalrail.co.uk/OpenLDBWS/ldb11.asmx"

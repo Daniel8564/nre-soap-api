@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<types:mule xmlns:types="http://www.mulesoft.org/schema/mule/types">
+  <types:catalog>
+    <types:type name="post-from-process-api" format="json">
+      <types:shape format="weave" example="examples/nre-soap.json"><![CDATA[%dw 2.0
+
+type post_from_process_api = {|
+  subId: String, 
+  sourceLocation: String, 
+  destinationLocation: String, 
+  fromTime: String, 
+  toTime: String, 
+  advancedNotifyTimeMin: String
+|} {"example": "{\\\"subId\\\":\\\"1234abc\\\",\\\"sourceLocation\\\":\\\"London\\\",\\\"destinationLocation\\\":\\\"Airport\\\",\\\"fromTime\\\":\\\"12:30:30\\\",\\\"toTime\\\":\\\"12:30:30\\\",\\\"advancedNotifyTimeMin\\\":\\\"30\\\"}"}
+
+]]></types:shape>
+    </types:type>
+    <types:type name="authenticaiton" format="json">
+      <types:shape format="weave" example="examples/headers-soap.json"><![CDATA[%dw 2.0
+
+type authenticaiton = {| AccessToken: {| TokenValue: String |} |} {"example": "{\\\"AccessToken\\\":{\\\"TokenValue\\\":\\\"9f29a908-156d-44d0-bdba-fdc5abd824d7\\\"}}"}
+
+]]></types:shape>
+    </types:type>
+  </types:catalog>
+  <types:enrichment select="#00b9ce2b-ccff-419d-b995-293677917a9c"/>
+  <types:enrichment select="#1472b7c3-2939-4519-b7be-2c5808c73116">
+    <types:processor-declaration>
+      <types:input-event>
+        <types:message>
+          <types:payload type="post-from-process-api"/>
+        </types:message>
+      </types:input-event>
+    </types:processor-declaration>
+  </types:enrichment>
+</types:mule>
